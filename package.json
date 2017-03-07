@@ -1,0 +1,35 @@
+{
+  "name": "khaoulabot.app",
+  "version": "0.1.0",
+  "description": "khaoulabot.app, with React",
+  "private": true,
+  "main": "app.js",
+  "devDependencies": {
+    "electron": "^1.6.1",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-packager": "^8.5.0",
+    "electron-prebuilt-compile": "^1.1.3",
+    "gulp-electron": "^0.1.3",
+    "react-scripts": "*"
+  },
+  "dependencies": {
+    "auto-bind": "^1.1.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "styled-components": "^1.4.3",
+    "gulp": "^3.9.1",
+    "gulp-copy": "^1.0.0",
+    "gulp-electron": "^0.1.3",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "electron": "electron .",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+    "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+  }
+}
