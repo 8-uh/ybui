@@ -174,7 +174,7 @@ class Conversation extends Component {
             <UserInput
               type='text'
               value={userInput}
-              placeholder='Enter text here'
+              placeholder='Start typing'
               innerRef={input => this.userInput = input}
               onChange={e => this.handleUserInput(e)}
               disabled={disableUserInput}

@@ -7,7 +7,7 @@ const theme = {
   user: '👀',
   bot: '😾',
   baseColor: '#ccc',
-  font: "'courier', monotype",
+  font: '"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;',
   height: '500px',
   width: '100%',
   ansBorder: '#ddd'
@@ -17,6 +17,9 @@ const questions = [{
   text: 'Hello!'
 }, {
   text: 'What is your first name?',
+  key: 'firstName'
+}, {
+  text: 'What is your last name?',
   key: 'firstName'
 }, {
   text: 'How are you?',

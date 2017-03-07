@@ -19,7 +19,7 @@ const MessageBlob = styled.div`
   display: inline-block;
   border-radius: 0 15px 15px 15px;
   font-weight: 200;
-  color: #1768AC;
+  color: #AAA;
   font-family: ${props => props.theme.font};
   margin-bottom: 1rem;
   animation: ${fadeIn} 250ms;
@@ -30,7 +30,7 @@ const MessageBlobBot = MessageBlob;
 const MessageBlobUser = styled(MessageBlob)`
   right: 0;
   background: ${props => props.theme.userBlobColor};
-  color: #06BEE1;
+  color: #3ea4f0;
   border-radius: 15px 0 15px 15px;
   margin-right: .25rem;
 `;

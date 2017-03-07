@@ -8,7 +8,7 @@ const theme = {
   user: '🙂',
   bot: '🤖',
   baseColor: '#eee',
-  font: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif',
+  font: '"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;',
   height: '500px',
   width: '500px'
 }

@@ -5,6 +5,8 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
+  flex: 1;
+  align-items: flex-start;
   position: relative;
   flex-direction: column;
   max-width: ${props => props.theme.width};
