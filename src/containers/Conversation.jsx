@@ -174,12 +174,11 @@ class Conversation extends Component {
             <UserInput
               type='text'
               value={userInput}
-              placeholder='Start typing'
               innerRef={input => this.userInput = input}
               onChange={e => this.handleUserInput(e)}
               disabled={disableUserInput}
             />
-            <SubmitButton>↩</SubmitButton>
+            <SubmitButton>⏎</SubmitButton>
           </form>
         </Container>
       </ThemeProvider>

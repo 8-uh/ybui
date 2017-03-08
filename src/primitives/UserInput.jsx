@@ -4,9 +4,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const UserInput = styled.input`
-  width: 100%;
+  width: 90vw;
   padding: .8rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 200;
   border: 0 none;
   border-radius: 5px;

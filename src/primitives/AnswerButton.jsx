@@ -3,25 +3,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AnswerButton = styled.button`
+const AnswerButton = styled.span`
   display: inline-block;
-  border: 1px solid ${props => props.theme.ansBorder};
-  padding: .5rem 1rem;
   font-weight: 200;
-  color: #222;
+  color: ${props => props.theme.ansColor};
   font-size: .8rem;
-  background: none;
-  border-radius: 1.5rem;
+  font-family: ${props => props.theme.font};
   transition: background 100ms;
   cursor: pointer;
-  margin-right: .5rem;
-  margin-bottom: 1rem;
+  margin: .5rem;
 
   &:focus,
   &:hover {
     outline: 0;
-    background: ${props => props.theme.userBlobColor};
-    color: #111;
+    color: ${props => props.theme.ansHoverColor};
   }
 `;
 

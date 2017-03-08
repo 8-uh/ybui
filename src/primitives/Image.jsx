@@ -6,10 +6,8 @@ import styled from 'styled-components';
 const Image = styled.div`
   display: inline-block;
   border-radius: 1rem;
-  border: 1px solid #eee;
   overflow: hidden;
-  max-width: 600px;
-  position: relative;
+  width: 100%;
 
   img {
     width: 100%;

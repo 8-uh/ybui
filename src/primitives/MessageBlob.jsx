@@ -14,25 +14,29 @@ const fadeIn = keyframes`
 `;
 
 const MessageBlob = styled.div`
-  padding: 0 .75rem;
-  background: ${props => props.theme.blobColor};
+  padding: ${props => props.theme.bubblePadding};
   display: inline-block;
-  border-radius: 0 15px 15px 15px;
   font-weight: 200;
-  color: #AAA;
   font-family: ${props => props.theme.font};
-  margin-bottom: 1rem;
+  color: ${props => props.theme.txtColor};
+  margin-bottom: .2rem;
   animation: ${fadeIn} 250ms;
 `;
 
-const MessageBlobBot = MessageBlob;
+const MessageBlobBot = styled.div`
+  padding: ${props => props.theme.bubblePadding};
+  display: inline-block;
+  font-weight: 200;
+  color: ${props => props.theme.botTxtColor};
+  font-family: ${props => props.theme.font};
+  margin-top: .8rem;
+  margin-bottom: .2rem;
+  animation: ${fadeIn} 250ms;
+`;
+
 
 const MessageBlobUser = styled(MessageBlob)`
-  right: 0;
-  background: ${props => props.theme.userBlobColor};
-  color: #3ea4f0;
-  border-radius: 15px 0 15px 15px;
-  margin-right: .25rem;
+  color: ${props => props.theme.txtColor};
 `;
 
 export {

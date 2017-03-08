@@ -12,9 +12,6 @@ const Container = styled.div`
   max-width: ${props => props.theme.width};
   height: ${props => props.theme.height};
   padding: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
 `;
 
 export default Container;

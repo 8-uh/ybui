@@ -1,25 +1,11 @@
 import React from 'react'
 import Conversation from '../containers/Conversation'
-
-const theme = {
-  blobColor: '#FFF',
-  userBlobColor: '#FFF',
-  user: '👀',
-  bot: '😾',
-  baseColor: '#ccc',
-  font: '"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;',
-  height: '500px',
-  width: '100%',
-  ansBorder: '#ddd'
-}
+import theme from '../theme'
 
 const questions = [{
   text: 'Hello!'
 }, {
   text: 'What is your first name?',
-  key: 'firstName'
-}, {
-  text: 'What is your last name?',
   key: 'firstName'
 }, {
   text: 'How are you?',
@@ -40,7 +26,7 @@ const questions = [{
 }, {
   text: 'Do you like this image?',
   key: 'imageLike',
-  image: 'https://unsplash.it/400/300/?random',
+  image: 'https://placeimg.com/640/480/any',
   buttons: [{
     text: 'Yes, looks great!',
     value: 'yes'
