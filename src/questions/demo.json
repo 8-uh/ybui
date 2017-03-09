@@ -1,68 +1,68 @@
 [
   {
-    text: 'Hello!',
-    key: 'choice',
-    icons: [
+    "text": "Hello!",
+    "key": "choice",
+    "icons": [
       {
-        text: 'Photo',
-        icon: 'linked_camera'
+        "text": "Photo",
+        "icon": "linked_camera"
       },
       {
-        text: 'Message',
-        icon: 'message'
+        "text": "Message",
+        "icon": "message"
       },
       {
-        text: 'Contact',
-        icon: 'contact_phone'
+        "text": "Contact",
+        "icon": "contact_phone"
       },
       {
-        text: 'Favorite',
-        icon: 'favorite'
+        "text": "Favorite",
+        "icon": "favorite"
       },
       {
-        text: 'Call',
-        icon: 'call'
+        "text": "Call",
+        "icon": "call"
       },
       {
-        text: 'More',
-        icon: 'more_vert'
+        "text": "More",
+        "icon": "more_vert"
       }
     ]
   },
   {
-    text: 'How are you?',
-    key: 'emotion',
-    buttons: [
+    "text": "How are you?",
+    "key": "emotion",
+    "buttons": [
       {
-        text: 'Awesome!',
-        value: 'great'
+        "text": "Awesome!",
+        "value": "great"
       },
       {
-        text: 'Good',
-        value: 'good'
+        "text": "Good",
+        "value": "good"
       },
       {
-        text: 'Could be better',
-        value: 'medium'
+        "text": "Could be better",
+        "value": "medium"
       },
       {
-        text: 'Not so good...',
-        value: 'bad'
+        "text": "Not so good...",
+        "value": "bad"
       }
     ]
   },
   {
-    text: 'Do you like this image?',
-    key: 'imageLike',
-    image: 'https://placeimg.com/640/480/any',
-    buttons: [
+    "text": "Do you like this image?",
+    "key": "imageLike",
+    "image": "https://placeimg.com/640/480/any",
+    "buttons": [
       {
-        text: 'Yes, looks great!',
-        value: 'yes'
+        "text": "Yes, looks great!",
+        "value": "yes"
       },
       {
-        text: 'No really...',
-        value: 'no'
+        "text": "No really...",
+        "value": "no"
       }
     ]
   }
