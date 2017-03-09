@@ -118,7 +118,8 @@ class Conversation extends Component {
             loadingBot: false
           })
 
-          if (this.state.questions[this.state.questionNumber].buttons) {
+          if (this.state.questions[this.state.questionNumber].buttons ||
+          this.state.questions[this.state.questionNumber].icons) {
             this.setState({
               disableUserInput: true
             })
