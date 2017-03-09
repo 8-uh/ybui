@@ -41,7 +41,8 @@ class Conversation extends Component {
       ...this.state,
       messages: [
         questions[questionNumber]
-      ]
+      ],
+      disableUserInput: true
     })
   }
 
