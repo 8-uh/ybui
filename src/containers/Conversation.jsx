@@ -174,6 +174,7 @@ class Conversation extends Component {
             <UserInput
               type='text'
               value={userInput}
+              autofocus='autofocus'
               innerRef={input => this.userInput = input}
               onChange={e => this.handleUserInput(e)}
               disabled={disableUserInput}
