@@ -111,6 +111,10 @@ class Conversation extends Component {
       questionNumber: this.state.questionNumber + 1,
       loadingBot: true
     }, () => {
+      if (this.state.questions[this.state.questionNumber].flash === true) {
+        this.nextQuestion()
+      }
+
       if (this.state.questionNumber < this.state.questions.length) {
         setTimeout(() => {
           this.setState({
@@ -195,7 +199,7 @@ class Conversation extends Component {
             {this.state.loadingBot && <Loading bot />}
             {this.state.userInput.length > 0 && <Loading user />}
           </MessageArea>
-          <form onSubmit={e => this.submitUserInput(e)}>
+          <form className='userInputForm' onSubmit={e => this.submitUserInput(e)}>
             <UserInput
               type='text'
               value={userInput}
@@ -204,7 +208,7 @@ class Conversation extends Component {
               onChange={e => this.handleUserInput(e)}
               disabled={disableUserInput}
             />
-            <SubmitButton>⏎</SubmitButton>
+            <SubmitButton>></SubmitButton>
           </form>
         </Container>
       </ThemeProvider>
