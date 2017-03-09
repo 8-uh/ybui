@@ -43,6 +43,8 @@ class Conversation extends Component {
         questions[questionNumber]
       ],
       disableUserInput: true
+    }, () => {
+      this.nextQuestion()
     })
   }
 
