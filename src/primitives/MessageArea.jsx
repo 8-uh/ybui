@@ -7,7 +7,7 @@ const MessageArea = styled.div`
   height: 85%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-bottom: 2%;
 `;
 

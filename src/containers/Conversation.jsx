@@ -56,6 +56,26 @@ class Conversation extends Component {
     })
   }
 
+  handleIconClick (select) {
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        {
+          text: select.text,
+          type: 'USER'
+        }
+      ],
+      answers: this.state.questions[this.state.questionNumber].key ? {
+        ...this.state.answers,
+        [this.state.questions[this.state.questionNumber].key]: select.icon
+      } : {
+        ...this.state.answers
+      }
+    }, () => {
+      this.nextQuestion()
+    })
+  }
+
   handleButtonSelect (select) {
     this.setState({
       messages: [
@@ -164,6 +184,7 @@ class Conversation extends Component {
                 message={message}
                 answers={answers}
                 onButtonSelect={this.handleButtonSelect}
+                onIconClick={this.handleIconClick}
                 active={messages.length === index + 1}
             />
           )}

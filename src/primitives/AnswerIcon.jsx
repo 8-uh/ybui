@@ -3,9 +3,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AnswerIcon = styled.i`
+const AnswerIcon = styled.span`
   display: inline-block;
-  color: ${props => props.theme.ansColor};
+  color: ${props => props.theme.iconColor};
   transition: background 100ms;
   cursor: pointer;
   margin: .5rem;

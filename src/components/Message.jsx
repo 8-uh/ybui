@@ -4,6 +4,8 @@ import { withTheme } from 'styled-components'
 import { MessageBlobBot, MessageBlobUser } from '../primitives/MessageBlob'
 // import Avatar from '../primitives/Avatar'
 import AnswerButton from '../primitives/AnswerButton'
+import AnswerIcon from '../primitives/AnswerIcon'
+
 import Image from '../primitives/Image'
 
 const Message = (props) => {
@@ -27,6 +29,15 @@ const Message = (props) => {
                 <AnswerButton key={index} onClick={() => props.onButtonSelect(button)}>
                   {button.text}
                 </AnswerButton>
+              )}
+            </div>
+          }
+          {message.icons && active &&
+            <div className='iconset'>
+              {message.icons.map((icon, index) =>
+                <AnswerIcon className='material-icons' key={index} onClick={() => props.onIconClick(icon)}>
+                  {icon.icon}
+                </AnswerIcon>
               )}
             </div>
           }
