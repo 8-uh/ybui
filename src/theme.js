@@ -5,9 +5,9 @@
 const colors = {
   txtColor: '#555',
   botTxtColor: '#BBB',
-  ansColor: '#0579FF',
-  ansHoverColor: '#044289',
-  iconColor: '#444'
+  ansColor: '#62AAF7',
+  ansHoverColor: '#5FA7F4',
+  iconColor: '#666'
 }
 
 const theme = {
