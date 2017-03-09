@@ -2,7 +2,6 @@ import React from 'react'
 import Conversation from '../containers/Conversation'
 import theme from '../theme'
 
-
 const questions = require('../questions/demo.json')
 
 const App = (props) => {
