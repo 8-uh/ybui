@@ -14,4 +14,7 @@ injectGlobal`
     body {
       margin: 0;
     }
+    .userInputForm {
+
+    }
 `;
