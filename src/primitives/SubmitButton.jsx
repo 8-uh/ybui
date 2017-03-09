@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const SubmitButton = styled.button`
   display: inline-block;
   font-size: 1.2rem;
+  font-weight: bold;
   position: absolute;
   right: 5%;
   bottom: 7%;
