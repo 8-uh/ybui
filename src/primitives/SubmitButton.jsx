@@ -7,15 +7,16 @@ const SubmitButton = styled.button`
   display: inline-block;
   font-size: 1.2rem;
   font-weight: bold;
-  position: absolute;
-  right: 5%;
-  bottom: 7%;
   background: none;
   border: 0;
-  color: ${props => props.theme.baseColor};
+  width: 9%;
+  color: ${props => props.theme.iconColor};
 
   &:focus {
     outline: 0;
+  }
+  &:hover {
+    color: #333;
   }
 `;
 

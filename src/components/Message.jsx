@@ -23,15 +23,6 @@ const Message = (props) => {
               <img src={message.image} alt={message.text} />
             </Image>
           }
-          {message.buttons && active &&
-            <div>
-              {message.buttons.map((button, index) =>
-                <AnswerButton key={index} onClick={() => props.onButtonSelect(button)}>
-                  {button.text}
-                </AnswerButton>
-              )}
-            </div>
-          }
           {message.icons && active &&
             <div className='iconset'>
               {message.icons.map((icon, index) =>
@@ -40,6 +31,15 @@ const Message = (props) => {
                 </AnswerIcon>
               )}
             </div>
+          }
+          {message.buttons && active &&
+            <ul>
+              {message.buttons.map((button, index) =>
+                <AnswerButton key={index} onClick={() => props.onButtonSelect(button)}>
+                  {button.text}
+                </AnswerButton>
+              )}
+            </ul>
           }
           {/* message.type === 'final' &&
             Object.keys(answers).map((answer, index) =>

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const AnswerIcon = styled.span`
   display: inline-block;
-  color: ${props => props.theme.iconColor};
+  color: ${props => props.theme.txtColor};
   transition: background 100ms;
   cursor: pointer;
   margin: .5rem;

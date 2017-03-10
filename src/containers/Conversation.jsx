@@ -34,19 +34,9 @@ class Conversation extends Component {
     }
   }
 
-  componentWillMount () {
-    const { questions, questionNumber } = this.state
-
-    this.setState({
-      ...this.state,
-      messages: [
-        questions[questionNumber]
-      ],
-      disableUserInput: true
-    }, () => {
-      this.nextQuestion()
-    })
-  }
+  // componentWillMount () {
+  //   const { questions, questionNumber } = this.state
+  // }
 
   componentDidMount () {
     this.userInput.focus()
@@ -155,7 +145,7 @@ class Conversation extends Component {
 
   submitUserInput (e) {
     e.preventDefault()
-    if (this.state.userInput.length > 0) {
+    if (this.state.userInput.length > 0 || this.state.questionNumber === 0) {
       this.setState({
         messages: [
           ...this.state.messages,
@@ -199,17 +189,19 @@ class Conversation extends Component {
             {this.state.loadingBot && <Loading bot />}
             {this.state.userInput.length > 0 && <Loading user />}
           </MessageArea>
-          <form className='userInputForm' onSubmit={e => this.submitUserInput(e)}>
-            <UserInput
-              type='text'
-              value={userInput}
-              autofocus='autofocus'
-              innerRef={input => this.userInput = input}
-              onChange={e => this.handleUserInput(e)}
-              disabled={disableUserInput}
-            />
-            <SubmitButton>></SubmitButton>
-          </form>
+          <div className='userInputForm'>
+            <form onSubmit={e => this.submitUserInput(e)}>
+              <UserInput
+                type='text'
+                value={userInput}
+                autofocus='autofocus'
+                innerRef={input => this.userInput = input}
+                onChange={e => this.handleUserInput(e)}
+                disabled={disableUserInput}
+              />
+              <SubmitButton><i className='material-icons'>blur_on</i></SubmitButton>
+            </form>
+          </div>
         </Container>
       </ThemeProvider>
     )

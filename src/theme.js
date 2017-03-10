@@ -5,6 +5,7 @@
 const colors = {
   txtColor: '#555',
   botTxtColor: '#BBB',
+  whiteLine: '#EEE',
   ansColor: '#62AAF7',
   ansHoverColor: '#5FA7F4',
   iconColor: '#666'
@@ -20,7 +21,8 @@ const theme = {
   botTxtColor: colors.botTxtColor,
   ansColor: colors.ansColor,
   ansHoverColor: colors.ansHoverColor,
-  iconColor: colors.iconColor
+  iconColor: colors.iconColor,
+  whiteLine: colors.whiteLine
 }
 
 export default theme

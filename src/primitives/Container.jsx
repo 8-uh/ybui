@@ -4,14 +4,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: flex-start;
-  position: relative;
-  flex-direction: column;
-  max-width: ${props => props.theme.width};
-  height: ${props => props.theme.height};
-  padding: 1rem;
+  padding: 5px;
+  height: 100vh;
 `;
 
 export default Container;

@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const UserInput = styled.input`
-  width: 90vw;
+  width: 85%;
   padding: .7rem .5rem;
   font-size: 1.2rem;
   font-weight: 200;
