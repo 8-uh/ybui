@@ -19,18 +19,14 @@ class Conversation extends Component {
     super(props)
     autoBind(this)
     this.state = {
-      questions: props.questions.map(question => {
-        return {
-          ...question,
-          sender: 'BOT'
-        }
-      }),
+      questions: [],
       questionNumber: 0,
       userInput: '',
       disableUserInput: false,
       messages: [],
       answers: {},
-      loadingBot: false
+      loadingBot: false,
+      currentJson: ''
     }
   }
 
@@ -88,12 +84,25 @@ class Conversation extends Component {
       this.nextQuestion()
     })
   }
+
   finalMessage () {
     return {
       text: 'Thank you!',
       type: 'final',
       sender: 'BOT'
     }
+  }
+
+  loadJsonData (key) {
+    const questions = require('../questions/' + key + '.json')
+    this.setState({
+      questions: questions.map(question => {
+        return {
+          ...question,
+          sender: 'BOT'
+        }
+      })
+    })
   }
 
   nextQuestion () {
@@ -145,7 +154,7 @@ class Conversation extends Component {
 
   submitUserInput (e) {
     e.preventDefault()
-    if (this.state.userInput.length > 0 || this.state.questionNumber === 0) {
+    if (this.state.userInput.length > 0) {
       this.setState({
         messages: [
           ...this.state.messages,
@@ -154,14 +163,19 @@ class Conversation extends Component {
             type: 'USER'
           }
         ],
-        answers: this.state.questions[this.state.questionNumber].key ? {
-          ...this.state.answers,
-          [this.state.questions[this.state.questionNumber].key]: this.state.userInput
-        } : {
-          ...this.state.answers
-        },
-        userInput: ''
+        userInput: '',
+        currentJson: 'text',
+        questionNumber: 0
       }, () => {
+        this.loadJsonData(this.state.currentJson)
+        this.nextQuestion()
+      })
+    } else {
+      this.setState({
+        currentJson: 'button',
+        questionNumber: 0
+      }, () => {
+        this.loadJsonData(this.state.currentJson)
         this.nextQuestion()
       })
     }

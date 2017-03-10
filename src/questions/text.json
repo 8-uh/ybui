@@ -1,0 +1,41 @@
+[
+  {
+    "text": ""
+  },
+  {
+    "text": "Give me the photo",
+    "key": "pickphoto",
+    "buttons": [
+      {
+        "text": "Camera",
+        "value": "camera"
+      },
+      {
+        "text": "Browse",
+        "value": "browse"
+      },
+      {
+        "text": "Link",
+        "value": "link"
+      }
+    ]
+  },
+  {
+    "text": "What would you like to do with this image?",
+    "key": "imageLike",
+    "image": "https://placeimg.com/640/480/any",
+    "buttons": [
+      {
+        "text": "Sell?",
+        "value": "sell"
+      },
+      {
+        "text": "More Pics",
+        "value": "more"
+      }
+    ]
+  }, {
+    "text": "Lets add up more infomation!",
+    "flash": true
+    }
+]

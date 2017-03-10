@@ -15,9 +15,11 @@ const Message = (props) => {
     <section>
       {message.sender === 'BOT' ?
         <div>
-          <MessageBlobBot>
-            {message.text}
-          </MessageBlobBot>
+          {message.text &&
+            <MessageBlobBot>
+              {message.text}
+            </MessageBlobBot>
+          }
           {message.image &&
             <Image>
               <img src={message.image} alt={message.text} />

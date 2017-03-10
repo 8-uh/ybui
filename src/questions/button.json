@@ -1,0 +1,134 @@
+[
+  {
+    "text": ""
+  },
+  {
+    "text": "",
+    "key": "choice",
+    "icons": [
+      {
+        "text": "Photo",
+        "icon": "camera_alt"
+      },
+      {
+        "text": "Message",
+        "icon": "chat_bubble_outline"
+      },
+      {
+        "text": "Contact",
+        "icon": "person_outline"
+      },
+      {
+        "text": "Favorite",
+        "icon": "favorite_border"
+      },
+      {
+        "text": "Location",
+        "icon": "place"
+      },
+      {
+        "text": "Call",
+        "icon": "call"
+      },
+      {
+        "text": "More",
+        "icon": "more"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "informations",
+        "value": "informations"
+      },
+      {
+        "text": "videos",
+        "value": "videos"
+      },
+      {
+        "text": "sounds",
+        "value": "sounds"
+      },
+      {
+        "text": "books",
+        "value": "books"
+      },
+      {
+        "text": "games",
+        "value": "games"
+      },
+      {
+        "text": "shopping",
+        "value": "shopping"
+      },
+      {
+        "text": "maps",
+        "value": "maps"
+      }
+    ]
+  },
+  {
+    "text": "Give me the photo",
+    "key": "pickphoto",
+    "buttons": [
+      {
+        "text": "Camera",
+        "value": "camera"
+      },
+      {
+        "text": "Browse",
+        "value": "browse"
+      },
+      {
+        "text": "Link",
+        "value": "link"
+      }
+    ]
+  },
+  {
+    "text": "What would you like to do with this image?",
+    "key": "imageLike",
+    "image": "https://placeimg.com/640/480/any",
+    "buttons": [
+      {
+        "text": "Sell?",
+        "value": "sell"
+      },
+      {
+        "text": "More Pics",
+        "value": "more"
+      }
+    ]
+  }, {
+    "text": "Lets add up more infomation!",
+    "flash": true
+    },{
+    "text": "What do you want to do now? Please select.",
+    "key": "salechoice",
+    "icons": [
+      {
+        "text": "Photo",
+        "icon": "linked_camera"
+      },
+      {
+        "text": "Message",
+        "icon": "message"
+      },
+      {
+        "text": "Contact",
+        "icon": "contact_phone"
+      },
+      {
+        "text": "Favorite",
+        "icon": "favorite"
+      },
+      {
+        "text": "Call",
+        "icon": "call"
+      },
+      {
+        "text": "More",
+        "icon": "more_vert"
+      }
+    ]
+  }
+]
