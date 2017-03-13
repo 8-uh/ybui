@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import autoBind from 'auto-bind'
 import { ThemeProvider } from 'styled-components'
+import { generateMnemonic } from 'bip39'
 import theme from '../theme'
 
 import Container from '../primitives/Container'
@@ -13,6 +14,10 @@ import Message from '../components/Message'
 import MessageArea from '../primitives/MessageArea'
 import Loading from '../components/Loading'
 import SubmitButton from '../primitives/SubmitButton'
+
+var hdkey = require('ethereumjs-wallet/hdkey')
+var Web3 = require('web3')
+var web3 = new Web3()
 
 class Conversation extends Component {
   constructor (props) {
@@ -28,6 +33,7 @@ class Conversation extends Component {
       loadingBot: false,
       currentJson: ''
     }
+    console.log(web3)
   }
 
   // componentWillMount () {
@@ -36,6 +42,12 @@ class Conversation extends Component {
 
   componentDidMount () {
     this.userInput.focus()
+  }
+
+  createWallet (e) {
+    e.preventDefault()
+    var seed = generateMnemonic()
+    return hdkey.fromMasterSeed(seed).getWallet()
   }
 
   handleUserInput (e) {
