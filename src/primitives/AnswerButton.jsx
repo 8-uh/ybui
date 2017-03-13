@@ -10,6 +10,8 @@ const AnswerButton = styled.li`
   font-family: ${props => props.theme.font};
   transition: background 100ms;
   cursor: pointer;
+  list-style: none;
+  margin-bottom: 4px;
 
   &:focus,
   &:hover {

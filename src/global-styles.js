@@ -24,4 +24,13 @@ injectGlobal`
       bottom: 0;
       background: #FFF;
     }
+    ul.answerli {
+      padding-left: 10px;
+    }
+    .spDivider {
+      clear: both;
+      display: block;
+      margin: 15px 0;
+      color: ${props => props.theme.whiteLine};
+    }
 `;
