@@ -22,7 +22,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "styled-components": "^1.4.3",
-    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
+    "web3": "^0.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
