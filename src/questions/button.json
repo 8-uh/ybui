@@ -63,6 +63,26 @@
       {
         "text": "maps",
         "value": "maps"
+      },
+      {
+        "text": "",
+        "value": "more_moriz"
+      },
+      {
+        "text": "vpn",
+        "value": "vpn"
+      },
+      {
+        "text": "wallet",
+        "value": "wallet"
+      },
+      {
+        "text": "profile",
+        "value": "profile"
+      },
+      {
+        "text": "calendar & events",
+        "value": "calendarandevents"
       }
     ]
   },
