@@ -35,11 +35,15 @@ const Message = (props) => {
             </div>
           }
           {message.buttons && active &&
-            <ul>
+            <ul className='answerli'>
               {message.buttons.map((button, index) =>
-                <AnswerButton key={index} onClick={() => props.onButtonSelect(button)}>
-                  {button.text}
-                </AnswerButton>
+                (button.value === 'more_moriz') ? (
+                  <span key={index} className='spDivider'>...</span>
+                ) : (
+                  <AnswerButton key={index} onClick={() => props.onButtonSelect(button)}>
+                    {button.text}
+                  </AnswerButton>
+                )
               )}
             </ul>
           }
