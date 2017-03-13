@@ -7,6 +7,7 @@ import autoBind from 'auto-bind'
 import { ThemeProvider } from 'styled-components'
 import { generateMnemonic } from 'bip39'
 import theme from '../theme'
+import ReactDOM from 'react-dom'
 
 import Container from '../primitives/Container'
 import UserInput from '../primitives/UserInput'
@@ -16,8 +17,8 @@ import Loading from '../components/Loading'
 import SubmitButton from '../primitives/SubmitButton'
 
 var hdkey = require('ethereumjs-wallet/hdkey')
-var Web3 = require('web3')
-var web3 = new Web3()
+// var Web3 = require('web3')
+// var web3 = new Web3()
 
 class Conversation extends Component {
   constructor (props) {
@@ -31,9 +32,13 @@ class Conversation extends Component {
       messages: [],
       answers: {},
       loadingBot: false,
-      currentJson: ''
+      currentJson: '',
+      actions: {
+        'button': true,
+        'text': true
+      }
     }
-    console.log(web3)
+    // console.log(web3)
   }
 
   // componentWillMount () {
@@ -42,12 +47,21 @@ class Conversation extends Component {
 
   componentDidMount () {
     this.userInput.focus()
+    this.scrollToBottom()
+  }
+  componentDidUpdate () {
+    this.scrollToBottom()
   }
 
   createWallet (e) {
     e.preventDefault()
     var seed = generateMnemonic()
     return hdkey.fromMasterSeed(seed).getWallet()
+  }
+
+  scrollToBottom () {
+    const node = ReactDOM.findDOMNode(this.messagesEnd)
+    node.scrollIntoView({behavior: 'smooth'})
   }
 
   handleUserInput (e) {
@@ -72,29 +86,11 @@ class Conversation extends Component {
       } : {
         ...this.state.answers
       }
-    }, () => {
-      this.nextQuestion()
     })
   }
 
   handleButtonSelect (select) {
-    this.setState({
-      messages: [
-        ...this.state.messages,
-        {
-          text: select.text,
-          type: 'USER'
-        }
-      ],
-      answers: this.state.questions[this.state.questionNumber].key ? {
-        ...this.state.answers,
-        [this.state.questions[this.state.questionNumber].key]: select.value
-      } : {
-        ...this.state.answers
-      }
-    }, () => {
-      this.nextQuestion()
-    })
+    this.loadJsonData(select.value)
   }
 
   finalMessage () {
@@ -105,16 +101,41 @@ class Conversation extends Component {
     }
   }
 
+  nothingFound () {
+    return {
+      text: 'This feature is not implemeted yet!',
+      type: 'nothing',
+      sender: 'BOT'
+    }
+  }
+
   loadJsonData (key) {
-    const questions = require('../questions/' + key + '.json')
-    this.setState({
-      questions: questions.map(question => {
-        return {
-          ...question,
-          sender: 'BOT'
-        }
+    if (key in this.state.actions) {
+      const questions = require('../questions/' + key + '.json')
+      console.log(questions)
+      this.setState({
+        questionNumber: 0,
+        currentJson: key,
+        loadingBot: false,
+        questions: questions.map(question => {
+          return {
+            ...question,
+            sender: 'BOT'
+          }
+        })
       })
-    })
+    } else {
+      this.setState({
+        questionNumber: 0,
+        currentJson: '',
+        questions: [],
+        loadingBot: false,
+        messages: [
+          ...this.state.messages,
+          this.nothingFound()
+        ]
+      })
+    }
   }
 
   nextQuestion () {
@@ -175,21 +196,14 @@ class Conversation extends Component {
             type: 'USER'
           }
         ],
-        userInput: '',
-        currentJson: 'text',
-        questionNumber: 0
+        userInput: ''
       }, () => {
-        this.loadJsonData(this.state.currentJson)
+        this.loadJsonData('text')
         this.nextQuestion()
       })
     } else {
-      this.setState({
-        currentJson: 'button',
-        questionNumber: 0
-      }, () => {
-        this.loadJsonData(this.state.currentJson)
-        this.nextQuestion()
-      })
+      this.loadJsonData('button')
+      this.nextQuestion()
     }
   }
 
@@ -214,6 +228,8 @@ class Conversation extends Component {
           )}
             {this.state.loadingBot && <Loading bot />}
             {this.state.userInput.length > 0 && <Loading user />}
+            <div style={{float: 'left', clear: 'both'}}
+              ref={(el) => { this.messagesEnd = el }} />
           </MessageArea>
           <div className='userInputForm'>
             <form onSubmit={e => this.submitUserInput(e)}>
@@ -225,7 +241,7 @@ class Conversation extends Component {
                 onChange={e => this.handleUserInput(e)}
                 disabled={disableUserInput}
               />
-              <SubmitButton><i className='material-icons'>blur_on</i></SubmitButton>
+              <SubmitButton><i className='material-icons md-48'>add_circle_outline</i></SubmitButton>
             </form>
           </div>
         </Container>
