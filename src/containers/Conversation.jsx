@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import autoBind from 'auto-bind'
 import { ThemeProvider } from 'styled-components'
+import { generateMnemonic } from 'bip39'
 import theme from '../theme'
 
 import Container from '../primitives/Container'
@@ -13,6 +14,8 @@ import Message from '../components/Message'
 import MessageArea from '../primitives/MessageArea'
 import Loading from '../components/Loading'
 import SubmitButton from '../primitives/SubmitButton'
+
+var hdkey = require('ethereumjs-wallet/hdkey')
 
 class Conversation extends Component {
   constructor (props) {
@@ -36,6 +39,11 @@ class Conversation extends Component {
 
   componentDidMount () {
     this.userInput.focus()
+  }
+
+  createWallet () {
+    var seed = generateMnemonic()
+    return hdkey.fromMasterSeed(seed).getWallet()
   }
 
   handleUserInput (e) {
