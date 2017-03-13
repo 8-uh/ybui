@@ -21,21 +21,7 @@
     ]
   },
   {
-    "text": "What would you like to do with this image?",
-    "key": "imageLike",
-    "image": "https://placeimg.com/640/480/any",
-    "buttons": [
-      {
-        "text": "Sell?",
-        "value": "sell"
-      },
-      {
-        "text": "More Pics",
-        "value": "more"
-      }
-    ]
-  }, {
     "text": "Lets add up more infomation!",
     "flash": true
-    }
+  }
 ]
