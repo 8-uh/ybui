@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 5px;
-  height: 100vh;
+  margin-bottom: 10%;
 `;
 
 export default Container;
