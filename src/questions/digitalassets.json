@@ -1,0 +1,14 @@
+[
+  {
+    "text": ""
+  },
+  {
+    "text": "Choose the file",
+    "key": "theFile",
+    "upfile": true
+  },
+  {
+    "text": "Flash the file",
+    "flash": true
+  }
+]

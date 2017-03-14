@@ -8,6 +8,7 @@ import AnswerIcon from '../primitives/AnswerIcon'
 import AnswerList from '../primitives/AnswerList'
 
 import Image from '../primitives/Image'
+import FileDropZone from './FileDropZone'
 
 const Message = (props) => {
   const { message, active } = props
@@ -25,6 +26,9 @@ const Message = (props) => {
             <Image>
               <img src={message.image} alt={message.text} />
             </Image>
+          }
+          {message.upfile &&
+            <FileDropZone />
           }
           {message.icons && active &&
             <div className='iconset'>
