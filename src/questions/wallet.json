@@ -5,7 +5,7 @@
   {
     "text": "What do you want to do?",
     "key": "what",
-    "buttons": [
+    "lists": [
       {
         "text": "create new",
         "value": "wallet_create_new"
