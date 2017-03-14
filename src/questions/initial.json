@@ -1,0 +1,106 @@
+[
+  {
+    "text": "",
+    "key": "choice",
+    "sender": "BOT",
+    "icons": [
+      {
+        "text": "Photo",
+        "icon": "camera_alt"
+      },
+      {
+        "text": "Message",
+        "icon": "chat_bubble_outline"
+      },
+      {
+        "text": "Contact",
+        "icon": "person_outline"
+      },
+      {
+        "text": "Favorite",
+        "icon": "favorite_border"
+      },
+      {
+        "text": "Location",
+        "icon": "place"
+      },
+      {
+        "text": "Call",
+        "icon": "call"
+      },
+      {
+        "text": "More",
+        "icon": "more"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "informations",
+        "value": "informations"
+      },
+      {
+        "text": "videos",
+        "value": "videos"
+      },
+      {
+        "text": "sounds",
+        "value": "sounds"
+      },
+      {
+        "text": "books",
+        "value": "books"
+      },
+      {
+        "text": "games",
+        "value": "games"
+      },
+      {
+        "text": "shopping",
+        "value": "shopping"
+      },
+      {
+        "text": "maps",
+        "value": "maps"
+      },
+      {
+        "text": "",
+        "value": "more_moriz"
+      },
+      {
+        "text": "vpn",
+        "value": "vpn"
+      },
+      {
+        "text": "wallet",
+        "value": "wallet"
+      },
+      {
+        "text": "profile",
+        "value": "profile"
+      },
+      {
+        "text": "calendar & events",
+        "value": "calendarandevents"
+      }
+    ]
+  },
+{
+  "text": "Give me the photo",
+  "key": "pickphoto",
+  "sender": "BOT",
+  "buttons": [
+    {
+      "text": "Camera",
+      "value": "camera"
+    },
+    {
+      "text": "Browse",
+      "value": "browse"
+    },
+    {
+      "text": "Link",
+      "value": "link"
+    }
+  ]
+}
+]
