@@ -4,7 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AnswerList = styled.li`
-  font-weight: 600;
   color: ${props => props.theme.ansColor};
   font-size: 1rem;
   font-family: ${props => props.theme.font};
