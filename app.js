@@ -1,4 +1,5 @@
 const electron = require('electron')
+const {clipboard} = require('electron')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -18,7 +19,7 @@ function createWindow () {
     height: 550,
     minWidth: 360,
     minHeight: 550,
-    frame: false,
+    titleBarStyle: 'hidden'
   })
 
   // and load the index.html of the app.
