@@ -5,6 +5,7 @@ import { MessageBlobBot, MessageBlobUser } from '../primitives/MessageBlob'
 // import Avatar from '../primitives/Avatar'
 import AnswerButton from '../primitives/AnswerButton'
 import AnswerIcon from '../primitives/AnswerIcon'
+import AnswerList from '../primitives/AnswerList'
 
 import Image from '../primitives/Image'
 
@@ -43,6 +44,19 @@ const Message = (props) => {
                   <AnswerButton key={index} onClick={() => props.onButtonSelect(button)}>
                     {button.text}
                   </AnswerButton>
+                )
+              )}
+            </ul>
+          }
+          {message.lists && active &&
+            <ul className='answerli'>
+              {message.lists.map((list, index) =>
+                (list.value === 'more_moriz') ? (
+                  <span key={index} className='spDivider'>...</span>
+                ) : (
+                  <AnswerList key={index} onClick={() => props.onListClick(list)}>
+                    {list.text}
+                  </AnswerList>
                 )
               )}
             </ul>

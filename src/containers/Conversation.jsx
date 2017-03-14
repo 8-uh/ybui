@@ -35,6 +35,7 @@ class Conversation extends Component {
       currentJson: '',
       actions: {
         'button': true,
+        'wallet': true,
         'text': true
       }
     }
@@ -90,7 +91,15 @@ class Conversation extends Component {
   }
 
   handleButtonSelect (select) {
-    this.loadJsonData(select.value)
+    console.log(select)
+    var state_object = this.loadJsonData(select.value)
+    this.setState(state_object, () => {
+      this.nextQuestion()
+    })
+  }
+
+  onListSelect (select) {
+    console.log(select)
   }
 
   finalMessage () {
@@ -100,7 +109,6 @@ class Conversation extends Component {
       sender: 'BOT'
     }
   }
-
   nothingFound () {
     return {
       text: 'This feature is not implemeted yet!',
@@ -110,10 +118,10 @@ class Conversation extends Component {
   }
 
   loadJsonData (key) {
+    var state_object = {}
     if (key in this.state.actions) {
       const questions = require('../questions/' + key + '.json')
-      console.log(questions)
-      this.setState({
+      state_object = {
         questionNumber: 0,
         currentJson: key,
         loadingBot: false,
@@ -123,9 +131,9 @@ class Conversation extends Component {
             sender: 'BOT'
           }
         })
-      })
+      }
     } else {
-      this.setState({
+      state_object = {
         questionNumber: 0,
         currentJson: '',
         questions: [],
@@ -134,11 +142,61 @@ class Conversation extends Component {
           ...this.state.messages,
           this.nothingFound()
         ]
-      })
+      }
     }
+    return state_object
   }
 
   nextQuestion () {
+    this.setState({
+      loadingBot: true
+    }, () => {
+      if (this.state.questions[this.state.questionNumber].flash === true) {
+        this.nextQuestion()
+      }
+
+      if (this.state.questionNumber < this.state.questions.length) {
+        setTimeout(() => {
+          this.setState({
+            messages: [
+              ...this.state.messages,
+              this.state.questions[this.state.questionNumber]
+            ],
+            loadingBot: false
+          })
+
+          if (this.state.questions[this.state.questionNumber].buttons ||
+          this.state.questions[this.state.questionNumber].icons) {
+            this.setState({
+              disableUserInput: true
+            })
+          } else {
+            this.setState({
+              disableUserInput: false
+            })
+            this.userInput.focus()
+          }
+        }, 500)
+      } else {
+        setTimeout(() => {
+          this.setState({
+            messages: [
+              ...this.state.messages,
+              this.finalMessage()
+            ],
+            loadingBot: false,
+            disableUserInput: true
+          })
+          this.props.onEnded(this.state.answers)
+        }, 500)
+      }
+      this.setState({
+        questionNumber: this.state.questionNumber + 1
+      })
+    })
+  }
+
+  nextOldQuestion () {
     this.setState({
       questionNumber: this.state.questionNumber + 1,
       loadingBot: true
@@ -185,25 +243,37 @@ class Conversation extends Component {
     })
   }
 
-  submitUserInput (e) {
-    e.preventDefault()
-    if (this.state.userInput.length > 0) {
+  initialHandler (action) {
+    const questions = require('../questions/initial.json')
+    if (action === 'button') {
+      this.setState({
+        messages: [
+          ...this.state.messages,
+          questions[0]
+        ],
+        loadingBot: false
+      })
+    } else {
       this.setState({
         messages: [
           ...this.state.messages,
           {
             text: this.state.userInput,
             type: 'USER'
-          }
+          },
+          questions[1]
         ],
         userInput: ''
-      }, () => {
-        this.loadJsonData('text')
-        this.nextQuestion()
       })
+    }
+  }
+
+  submitUserInput (e) {
+    e.preventDefault()
+    if (this.state.userInput.length > 0) {
+      this.initialHandler('text')
     } else {
-      this.loadJsonData('button')
-      this.nextQuestion()
+      this.initialHandler('button')
     }
   }
 
@@ -223,6 +293,7 @@ class Conversation extends Component {
                 answers={answers}
                 onButtonSelect={this.handleButtonSelect}
                 onIconClick={this.handleIconClick}
+                onListClick={this.onListSelect}
                 active={messages.length === index + 1}
             />
           )}
