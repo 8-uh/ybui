@@ -1,0 +1,19 @@
+[
+  {
+    "text": ""
+  },
+  {
+    "text": "What do you want to do?",
+    "key": "what",
+    "buttons": [
+      {
+        "text": "create new",
+        "value": "wallet_create_new"
+      },
+      {
+        "text": "import wallet",
+        "value": "wallet_import"
+      }
+    ]
+  }
+]
