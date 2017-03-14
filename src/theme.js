@@ -5,7 +5,7 @@
 const colors = {
   txtColor: '#555',
   botTxtColor: '#BBB',
-  whiteLine: '#EEE',
+  whiteLine: '#AAA',
   ansColor: '#62AAF7',
   ansHoverColor: '#5FA7F4',
   iconColor: '#666'
