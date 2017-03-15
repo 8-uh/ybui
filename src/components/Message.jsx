@@ -20,7 +20,19 @@ const Message = (props) => {
           {message.text &&
             <MessageBlobBot>
               {message.text}
+              {message.status &&
+                <div><code>{message.status}</code></div>
+              }
             </MessageBlobBot>
+          }
+          {message.list_data && message.list_data.length > 0 &&
+            <ul>
+              {message.list_data.map((_list_data, index) =>
+                <li key={index}>
+                  {_list_data.address[0]}
+                </li>
+              )}
+            </ul>
           }
           {message.image &&
             <Image>
@@ -65,14 +77,6 @@ const Message = (props) => {
               )}
             </ul>
           }
-          {/* message.type === 'final' &&
-            Object.keys(answers).map((answer, index) =>
-              <div key={index}>
-                {answer}
-                <span>{answers[answer]}</span>
-              </div>
-            )
-          */}
         </div>
         :
         <div>
