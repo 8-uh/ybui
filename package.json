@@ -14,8 +14,7 @@
   },
   "dependencies": {
     "auto-bind": "^1.1.0",
-    "bip39": "^2.2.0",
-    "ethereumjs-wallet": "^0.6.0",
+    "eth-lightwallet": "^2.5.3",
     "gulp": "^3.9.1",
     "gulp-copy": "^1.0.0",
     "gulp-electron": "^0.1.3",

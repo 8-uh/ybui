@@ -7,10 +7,6 @@
     "flash": true
   },
   {
-    "text": "Wallet 1",
-    "flash": true
-  },
-  {
     "text": "What do you want to do?",
     "key": "what",
     "lists": [

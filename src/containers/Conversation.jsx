@@ -5,7 +5,6 @@
 import React, { Component } from 'react'
 import autoBind from 'auto-bind'
 import { ThemeProvider } from 'styled-components'
-import { generateMnemonic } from 'bip39'
 import theme from '../theme'
 import ReactDOM from 'react-dom'
 
@@ -16,7 +15,16 @@ import MessageArea from '../primitives/MessageArea'
 import Loading from '../components/Loading'
 import SubmitButton from '../primitives/SubmitButton'
 
-var hdkey = require('ethereumjs-wallet/hdkey')
+var lightwallet = require('eth-lightwallet')
+
+import crypto from 'crypto'
+const sourceCreateHash = crypto.createHash
+crypto.createHash = function createHash (alg) {
+  if (alg === 'ripemd160') {
+    alg = 'rmd160'
+  }
+  return sourceCreateHash(alg)
+}
 // var Web3 = require('web3')
 // var web3 = new Web3()
 
@@ -28,6 +36,7 @@ class Conversation extends Component {
       questions: [],
       questionNumber: 0,
       userInput: '',
+      userInputInit: true,
       disableUserInput: false,
       messages: [],
       answers: {},
@@ -39,9 +48,10 @@ class Conversation extends Component {
         'text': true,
         'digitalassets': true
       },
-      wallets: []
+      wallets: [],
+      secretSeed: ''
     }
-    // console.log(web3)
+    console.log(lightwallet)
   }
 
   // componentWillMount () {
@@ -56,24 +66,63 @@ class Conversation extends Component {
     this.scrollToBottom()
   }
 
-  createWallet () {
-    var seed = generateMnemonic()
-    var wallet = hdkey.fromMasterSeed(seed).getWallet()
+  createWalletInit () {
+    var secretSeed = lightwallet.keystore.generateRandomSeed()
     this.setState({
       messages: [
         ...this.state.messages,
         {
-          'text': seed,
+          'text': secretSeed,
           'flash': true,
           'sender': 'BOT'
         }
       ],
-      wallets: [
-        ...this.state.wallets,
-        wallet
-      ]
+      secretSeed: secretSeed,
+      userInputInit: false
+    }, () => {
+      this.nextQuestion()
     })
-    console.log(this.state)
+  }
+
+  createWallet (password) {
+    var secretSeed = this.state.secretSeed
+
+    var opts = {
+      password: password,
+      seedPhrase: secretSeed
+    }
+    var $this = this
+    lightwallet.keystore.createVault(opts, function (err, vault) {
+      vault.keyFromPassword(opts.password, function (err, pwDerivedKey) {
+        if (err) throw err
+
+        // vault.generateNewAddress(pwDerivedKey, 1)
+        // var addr = vault.getAddresses()
+
+        $this.setState({
+          messages: [
+            ...$this.state.messages,
+            {
+              'text': 'Wallet create Successfully!',
+              'flash': true,
+              'sender': 'BOT'
+            }
+          ],
+          wallets: [
+            ...$this.state.wallets,
+            {
+              'seed': secretSeed,
+              'ks': vault
+            }
+          ],
+          userInputInit: true,
+          disableUserInput: false,
+          questionNumber: 1
+        }, () => {
+          $this.nextQuestion()
+        })
+      })
+    })
   }
 
   scrollToBottom () {
@@ -117,8 +166,7 @@ class Conversation extends Component {
   onListSelect (select) {
     switch (select.value) {
       case 'wallet_create_new':
-        const wallet = this.createWallet()
-        console.log(wallet)
+        this.createWalletInit()
         break
       default:
         console.log(select)
@@ -173,37 +221,46 @@ class Conversation extends Component {
   }
 
   nextQuestion () {
-    console.log(this.state)
     this.setState({
       loadingBot: true,
       questionNumber: this.state.questionNumber + 1
     }, () => {
+      console.log('--  nextQuestion')
+      console.log(this.state)
       if (this.state.questions[this.state.questionNumber].flash === true) {
-        this.nextQuestion()
+        this.setState({
+          messages: [
+            ...this.state.messages,
+            this.state.questions[this.state.questionNumber]
+          ]
+        }, () => {
+          this.nextQuestion()
+        })
       }
 
       if (this.state.questionNumber < this.state.questions.length) {
-        setTimeout(() => {
-          this.setState({
-            messages: [
-              ...this.state.messages,
-              this.state.questions[this.state.questionNumber]
-            ],
-            loadingBot: false
-          })
+        // setTimeout(() => {
+        console.log(this.state.questions[this.state.questionNumber])
+        this.setState({
+          messages: [
+            ...this.state.messages,
+            this.state.questions[this.state.questionNumber]
+          ],
+          loadingBot: false
+        })
 
-          if (this.state.questions[this.state.questionNumber].buttons ||
+        if (this.state.questions[this.state.questionNumber].buttons ||
           this.state.questions[this.state.questionNumber].icons) {
-            this.setState({
-              disableUserInput: true
-            })
-          } else {
-            this.setState({
-              disableUserInput: false
-            })
-            this.userInput.focus()
-          }
-        }, 500)
+          this.setState({
+            disableUserInput: true
+          })
+        } else {
+          this.setState({
+            disableUserInput: false
+          })
+          this.userInput.focus()
+        }
+        // }, 500)
       } else {
         setTimeout(() => {
           this.setState({
@@ -217,9 +274,6 @@ class Conversation extends Component {
           this.props.onEnded(this.state.answers)
         }, 500)
       }
-      // this.setState({
-      //   questionNumber: this.state.questionNumber + 1
-      // })
     })
   }
 
@@ -270,6 +324,21 @@ class Conversation extends Component {
     })
   }
 
+  logicalAction (key) {
+    switch (key) {
+      case 'wallet_pass':
+        var password = this.state.userInput
+        this.setState({
+          userInput: ''
+        }, () => {
+          this.createWallet(password)
+        })
+        break
+      default:
+
+    }
+  }
+
   initialHandler (action) {
     const questions = require('../questions/initial.json')
     if (action === 'button') {
@@ -298,7 +367,11 @@ class Conversation extends Component {
   submitUserInput (e) {
     e.preventDefault()
     if (this.state.userInput.length > 0) {
-      this.initialHandler('text')
+      if (this.state.userInputInit) {
+        this.initialHandler('text')
+      } else {
+        this.logicalAction(this.state.messages[this.state.messages.length - 1].key)
+      }
     } else {
       this.initialHandler('button')
     }
