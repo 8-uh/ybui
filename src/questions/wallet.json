@@ -15,6 +15,10 @@
         "value": "wallet_create_new"
       },
       {
+        "text": "List wallet",
+        "value": "wallet_list"
+      },
+      {
         "text": "import wallet",
         "value": "wallet_import"
       }

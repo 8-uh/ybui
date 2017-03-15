@@ -85,21 +85,17 @@
     ]
   },
   {
-    "text": "Give me the photo",
-    "key": "pickphoto",
+    "text": "What do you want to do?",
+    "key": "findsend",
     "sender": "BOT",
     "buttons": [
       {
-        "text": "Camera",
-        "value": "camera"
+        "text": "Find",
+        "value": "find"
       },
       {
-        "text": "Browse",
-        "value": "browse"
-      },
-      {
-        "text": "Link",
-        "value": "link"
+        "text": "Send",
+        "value": "send"
       }
     ]
   }
