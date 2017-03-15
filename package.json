@@ -21,6 +21,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.6.0",
+    "react-dropzone-es6": "^1.0.2",
     "store": "^2.0.4",
     "styled-components": "^1.4.3",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
