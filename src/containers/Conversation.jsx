@@ -56,7 +56,6 @@ class Conversation extends Component {
     }
 
     var initailState = store.get('state')
-    console.log(initailState)
     if (typeof initailState !== 'undefined') {
       this.state = initailState
     } else {
@@ -177,7 +176,10 @@ class Conversation extends Component {
         [this.state.questions[this.state.questionNumber].key]: select.icon
       } : {
         ...this.state.answers
-      }
+      },
+      disableUserInput: false
+    }, () => {
+      this.userInput.focus()
     })
   }
 
