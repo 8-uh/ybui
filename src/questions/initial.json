@@ -40,7 +40,7 @@
       },
       {
         "text": "videos",
-        "value": "videos"
+        "value": "digitalassets"
       },
       {
         "text": "sounds",
@@ -84,23 +84,23 @@
       }
     ]
   },
-{
-  "text": "Give me the photo",
-  "key": "pickphoto",
-  "sender": "BOT",
-  "buttons": [
-    {
-      "text": "Camera",
-      "value": "camera"
-    },
-    {
-      "text": "Browse",
-      "value": "browse"
-    },
-    {
-      "text": "Link",
-      "value": "link"
-    }
-  ]
-}
+  {
+    "text": "Give me the photo",
+    "key": "pickphoto",
+    "sender": "BOT",
+    "buttons": [
+      {
+        "text": "Camera",
+        "value": "camera"
+      },
+      {
+        "text": "Browse",
+        "value": "browse"
+      },
+      {
+        "text": "Link",
+        "value": "link"
+      }
+    ]
+  }
 ]

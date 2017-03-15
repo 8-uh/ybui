@@ -3,6 +3,14 @@
     "text": ""
   },
   {
+    "text": "Wallet",
+    "flash": true
+  },
+  {
+    "text": "Wallet 1",
+    "flash": true
+  },
+  {
     "text": "What do you want to do?",
     "key": "what",
     "lists": [
@@ -15,5 +23,9 @@
         "value": "wallet_import"
       }
     ]
+  },
+  {
+    "text": "enter a stong password for the wallet",
+    "key": "wallet_pass"
   }
 ]
