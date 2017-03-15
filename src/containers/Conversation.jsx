@@ -116,7 +116,7 @@ class Conversation extends Component {
             }
           ],
           userInputInit: true,
-          disableUserInput: false,
+          disableUserInput: true,
           questionNumber: 1
         }, () => {
           $this.nextQuestion()

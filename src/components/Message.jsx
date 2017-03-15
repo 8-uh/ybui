@@ -14,7 +14,7 @@ const Message = (props) => {
   const { message, active } = props
 
   return (
-    <section>
+    <section className={message.flash ? 'flash-message' : ''}>
       {message.sender === 'BOT' ?
         <div>
           {message.text &&
