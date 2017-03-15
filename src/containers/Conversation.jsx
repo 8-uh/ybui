@@ -36,8 +36,10 @@ class Conversation extends Component {
       actions: {
         'button': true,
         'wallet': true,
-        'text': true
-      }
+        'text': true,
+        'digitalassets': true
+      },
+      wallets: []
     }
     // console.log(web3)
   }
@@ -54,10 +56,24 @@ class Conversation extends Component {
     this.scrollToBottom()
   }
 
-  createWallet (e) {
-    e.preventDefault()
+  createWallet () {
     var seed = generateMnemonic()
-    return hdkey.fromMasterSeed(seed).getWallet()
+    var wallet = hdkey.fromMasterSeed(seed).getWallet()
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        {
+          'text': seed,
+          'flash': true,
+          'sender': 'BOT'
+        }
+      ],
+      wallets: [
+        ...this.state.wallets,
+        wallet
+      ]
+    })
+    console.log(this.state)
   }
 
   scrollToBottom () {
@@ -99,7 +115,14 @@ class Conversation extends Component {
   }
 
   onListSelect (select) {
-    console.log(select)
+    switch (select.value) {
+      case 'wallet_create_new':
+        const wallet = this.createWallet()
+        console.log(wallet)
+        break
+      default:
+        console.log(select)
+    }
   }
 
   finalMessage () {
@@ -109,6 +132,7 @@ class Conversation extends Component {
       sender: 'BOT'
     }
   }
+
   nothingFound () {
     return {
       text: 'This feature is not implemeted yet!',
@@ -118,6 +142,7 @@ class Conversation extends Component {
   }
 
   loadJsonData (key) {
+    console.log('--- Loading json: ' + key)
     var state_object = {}
     if (key in this.state.actions) {
       const questions = require('../questions/' + key + '.json')
@@ -148,8 +173,10 @@ class Conversation extends Component {
   }
 
   nextQuestion () {
+    console.log(this.state)
     this.setState({
-      loadingBot: true
+      loadingBot: true,
+      questionNumber: this.state.questionNumber + 1
     }, () => {
       if (this.state.questions[this.state.questionNumber].flash === true) {
         this.nextQuestion()
@@ -190,9 +217,9 @@ class Conversation extends Component {
           this.props.onEnded(this.state.answers)
         }, 500)
       }
-      this.setState({
-        questionNumber: this.state.questionNumber + 1
-      })
+      // this.setState({
+      //   questionNumber: this.state.questionNumber + 1
+      // })
     })
   }
 
@@ -312,7 +339,7 @@ class Conversation extends Component {
                 onChange={e => this.handleUserInput(e)}
                 disabled={disableUserInput}
               />
-              <SubmitButton><i className='material-icons md-48'>add_circle_outline</i></SubmitButton>
+              <SubmitButton><i className='material-icons md-48'>add</i></SubmitButton>
             </form>
           </div>
         </Container>
