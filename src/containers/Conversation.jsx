@@ -46,12 +46,12 @@ class Conversation extends Component {
         'button': true,
         'wallet': true,
         'text': true,
-        'digitalassets': true
+        'digitalassets': true,
+        send: true
       },
       wallets: [],
       secretSeed: ''
     }
-    console.log(lightwallet)
   }
 
   // componentWillMount () {
@@ -72,7 +72,8 @@ class Conversation extends Component {
       messages: [
         ...this.state.messages,
         {
-          'text': secretSeed,
+          'text': 'Copy the string for future reference',
+          'status': secretSeed,
           'flash': true,
           'sender': 'BOT'
         }
@@ -96,14 +97,14 @@ class Conversation extends Component {
       vault.keyFromPassword(opts.password, function (err, pwDerivedKey) {
         if (err) throw err
 
-        // vault.generateNewAddress(pwDerivedKey, 1)
-        // var addr = vault.getAddresses()
+        vault.generateNewAddress(pwDerivedKey, 1)
+        var addr = vault.getAddresses()
 
         $this.setState({
           messages: [
             ...$this.state.messages,
             {
-              'text': 'Wallet create Successfully!',
+              'text': 'Wallet created Successfully!',
               'flash': true,
               'sender': 'BOT'
             }
@@ -112,16 +113,30 @@ class Conversation extends Component {
             ...$this.state.wallets,
             {
               'seed': secretSeed,
-              'ks': vault
+              'ks': vault.serialize(),
+              'address': addr
             }
           ],
           userInputInit: true,
-          disableUserInput: true,
           questionNumber: 1
         }, () => {
           $this.nextQuestion()
         })
       })
+    })
+  }
+
+  listWallet () {
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        {
+          'text': 'Wallet List',
+          'list_data': this.state.wallets,
+          'flash': true,
+          'sender': 'BOT'
+        }
+      ]
     })
   }
 
@@ -156,7 +171,6 @@ class Conversation extends Component {
   }
 
   handleButtonSelect (select) {
-    console.log(select)
     var state_object = this.loadJsonData(select.value)
     this.setState(state_object, () => {
       this.nextQuestion()
@@ -168,6 +182,10 @@ class Conversation extends Component {
       case 'wallet_create_new':
         this.createWalletInit()
         break
+      case 'wallet_list':
+        this.listWallet()
+        break
+
       default:
         console.log(select)
     }
@@ -184,7 +202,7 @@ class Conversation extends Component {
   nothingFound () {
     return {
       text: 'This feature is not implemeted yet!',
-      type: 'nothing',
+      type: 'flash',
       sender: 'BOT'
     }
   }
@@ -211,11 +229,13 @@ class Conversation extends Component {
         currentJson: '',
         questions: [],
         loadingBot: false,
+        disableUserInput: false,
         messages: [
           ...this.state.messages,
           this.nothingFound()
         ]
       }
+      this.userInput.focus()
     }
     return state_object
   }
@@ -250,7 +270,8 @@ class Conversation extends Component {
         })
 
         if (this.state.questions[this.state.questionNumber].buttons ||
-          this.state.questions[this.state.questionNumber].icons) {
+          this.state.questions[this.state.questionNumber].icons ||
+          this.state.questions[this.state.questionNumber].lists) {
           this.setState({
             disableUserInput: true
           })
@@ -261,53 +282,6 @@ class Conversation extends Component {
           this.userInput.focus()
         }
         // }, 500)
-      } else {
-        setTimeout(() => {
-          this.setState({
-            messages: [
-              ...this.state.messages,
-              this.finalMessage()
-            ],
-            loadingBot: false,
-            disableUserInput: true
-          })
-          this.props.onEnded(this.state.answers)
-        }, 500)
-      }
-    })
-  }
-
-  nextOldQuestion () {
-    this.setState({
-      questionNumber: this.state.questionNumber + 1,
-      loadingBot: true
-    }, () => {
-      if (this.state.questions[this.state.questionNumber].flash === true) {
-        this.nextQuestion()
-      }
-
-      if (this.state.questionNumber < this.state.questions.length) {
-        setTimeout(() => {
-          this.setState({
-            messages: [
-              ...this.state.messages,
-              this.state.questions[this.state.questionNumber]
-            ],
-            loadingBot: false
-          })
-
-          if (this.state.questions[this.state.questionNumber].buttons ||
-          this.state.questions[this.state.questionNumber].icons) {
-            this.setState({
-              disableUserInput: true
-            })
-          } else {
-            this.setState({
-              disableUserInput: false
-            })
-            this.userInput.focus()
-          }
-        }, 500)
       } else {
         setTimeout(() => {
           this.setState({
@@ -347,7 +321,8 @@ class Conversation extends Component {
           ...this.state.messages,
           questions[0]
         ],
-        loadingBot: false
+        loadingBot: false,
+        disableUserInput: true
       })
     } else {
       this.setState({
@@ -359,7 +334,8 @@ class Conversation extends Component {
           },
           questions[1]
         ],
-        userInput: ''
+        userInput: '',
+        disableUserInput: true
       })
     }
   }
@@ -379,7 +355,6 @@ class Conversation extends Component {
 
   render () {
     const { messages, userInput, answers, disableUserInput } = this.state
-
     return (
       <ThemeProvider theme={this.props.theme || theme}>
         <Container>
