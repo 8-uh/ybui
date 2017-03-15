@@ -16,6 +16,7 @@ import Loading from '../components/Loading'
 import SubmitButton from '../primitives/SubmitButton'
 
 var lightwallet = require('eth-lightwallet')
+var store = require('store')
 
 import crypto from 'crypto'
 const sourceCreateHash = crypto.createHash
@@ -32,6 +33,7 @@ class Conversation extends Component {
   constructor (props) {
     super(props)
     autoBind(this)
+
     this.state = {
       questions: [],
       questionNumber: 0,
@@ -52,6 +54,14 @@ class Conversation extends Component {
       wallets: [],
       secretSeed: ''
     }
+
+    var initailState = store.get('state')
+    console.log(initailState)
+    if (typeof initailState !== 'undefined') {
+      this.state = initailState
+    } else {
+      store.set('state', this.state)
+    }
   }
 
   // componentWillMount () {
@@ -64,6 +74,7 @@ class Conversation extends Component {
   }
   componentDidUpdate () {
     this.scrollToBottom()
+    store.set('state', this.state)
   }
 
   createWalletInit () {
