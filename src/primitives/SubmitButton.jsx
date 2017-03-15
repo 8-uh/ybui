@@ -9,7 +9,7 @@ const SubmitButton = styled.button`
   font-weight: bold;
   background: none;
   border: 0;
-  width: 9%;
+  width: 13%;
   color: ${props => props.theme.iconColor};
 
   &:focus {
