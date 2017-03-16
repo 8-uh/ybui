@@ -6,13 +6,14 @@ import DropzoneComponent from 'react-dropzone-component';
 
 var componentConfig = {
   iconFiletypes: ['.jpg', '.png', '.gif'],
-  postUrl: '/uploadHandler'
+  postUrl: 'no-url'
 };
 var djsConfig = { autoProcessQueue: false }
 
 const FileDropZone = (props) => {
   require('../../node_modules/react-dropzone-component/styles/filepicker.css');
   require('../../node_modules/dropzone/dist/min/dropzone.min.css');
+
 
   const eventHandlers = {
       addedfile: props.onfileUpload.bind(this)

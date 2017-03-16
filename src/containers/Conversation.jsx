@@ -17,6 +17,8 @@ import SubmitButton from '../primitives/SubmitButton'
 
 var lightwallet = require('eth-lightwallet')
 var store = require('store')
+var ipfsAPI = require('ipfs-api')
+var ipfs = ipfsAPI({host: 'ipfs.lightrains.com', port: '5001', protocol: 'http'})
 
 import crypto from 'crypto'
 const sourceCreateHash = crypto.createHash
@@ -327,6 +329,26 @@ class Conversation extends Component {
   handleFiles (files) {
     this.scrollToBottom()
     console.log(files)
+    // var mockFile = {
+    //   name: files.name,
+    //   size: files.size,
+    //   type: 'image/jpeg'
+    // }
+    // console.log(mockFile)
+    // const fileStream = [
+    //   {
+    //     path: files.name,
+    //     content: mockFile
+    //   }
+    // ]
+    //
+
+    // ipfs.util.addFromStream(, (err, result) => {
+    //   if (err) {
+    //     console.log(err)
+    //   }
+    //   console.log(result)
+    // })
   }
 
   initialHandler (action) {
