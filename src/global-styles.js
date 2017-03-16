@@ -26,6 +26,8 @@ injectGlobal`
       position: fixed;
       bottom: 0;
       background: #FFF;
+      left: 0;
+      border-top: 1px solid ${theme.whiteLine};
     }
     ul.answerli {
       padding-left: 10px;
@@ -72,5 +74,10 @@ injectGlobal`
         font-family: 'Monaco', Courier;
         border-bottom: 1px dashed ${theme.whiteLine};
       }
+    }
+    code, pre {
+      font-family: Consolas, "Lucida Console", Monaco, monospace;
+      overflow: scroll;
+      white-space: pre;
     }
 `;
