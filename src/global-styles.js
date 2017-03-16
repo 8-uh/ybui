@@ -73,4 +73,9 @@ injectGlobal`
         border-bottom: 1px dashed ${theme.whiteLine};
       }
     }
+    code, pre {
+      font-family: Consolas, "Lucida Console", Monaco, monospace;
+      overflow: scroll;
+      white-space: pre;
+    }
 `;
