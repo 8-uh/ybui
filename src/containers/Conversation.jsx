@@ -325,6 +325,7 @@ class Conversation extends Component {
   }
 
   handleFiles (files) {
+    this.scrollToBottom()
     console.log(files)
   }
 
