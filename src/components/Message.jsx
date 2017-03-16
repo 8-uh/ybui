@@ -26,7 +26,7 @@ const Message = (props) => {
             </MessageBlobBot>
           }
           {message.list_data && message.list_data.length > 0 &&
-            <ul className="walletList">
+            <ul className='walletList'>
               {message.list_data.map((_list_data, index) =>
                 <li key={index}>
                   {_list_data.address[0]}
@@ -40,7 +40,7 @@ const Message = (props) => {
             </Image>
           }
           {message.upfile &&
-            <FileDropZone onDrop={() => props.onDrop(this.onDrop.bind(this))} />
+            <FileDropZone />
           }
           {message.icons && active &&
             <div className='iconset'>

@@ -1,16 +1,25 @@
 /* eslint-disable */
 
-import React from 'react'
-var Dropzone = require('react-dropzone')
+import React from 'react';
+import ReactDOM from 'react-dom';
+import DropzoneComponent from 'react-dropzone-component';
+
+var componentConfig = {
+  iconFiletypes: ['.jpg', '.png', '.gif'],
+  postUrl: '/uploadHandler'
+};
+var djsConfig = { autoProcessQueue: false }
+var eventHandlers = { addedfile: (file) => console.log(file) }
 
 const FileDropZone = (props) => {
+  require('../../node_modules/react-dropzone-component/styles/filepicker.css');
+  require('../../node_modules/dropzone/dist/min/dropzone.min.css');
+
   return (
-    <div>
-      <Dropzone className='imgbrowser'>
-        <div>Try dropping some files here, or click to select files to upload.</div>
-      </Dropzone>
-    </div>
-    )
+    <DropzoneComponent className='imgbrowser' config={componentConfig}
+    eventHandlers={eventHandlers}
+    djsConfig={djsConfig} />
+  );
 }
 
 export default FileDropZone

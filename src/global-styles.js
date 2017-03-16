@@ -8,6 +8,7 @@ import { injectGlobal } from 'styled-components';
 import theme from './theme'
 
 injectGlobal`
+
     *, *:before, *:after {
       box-sizing: border-box;
     }
@@ -59,5 +60,17 @@ injectGlobal`
     .material-icons.md-48 { font-size: 48px; }
     .flash-message {
       font-size: 10px;
+    }
+    .walletList {
+      padding: 10px;
+      box-sizing: border-box;
+      color: ${theme.txtColor};
+      li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-family: 'Monaco', Courier;
+        border-bottom: 1px dashed ${theme.whiteLine};
+      }
     }
 `;
