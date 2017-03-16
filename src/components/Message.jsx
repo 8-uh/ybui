@@ -40,7 +40,7 @@ const Message = (props) => {
             </Image>
           }
           {message.upfile &&
-            <FileDropZone />
+            <FileDropZone onfileUpload={props.onFilesUpload.bind(this)} />
           }
           {message.icons && active &&
             <div className='iconset'>

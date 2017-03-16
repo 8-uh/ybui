@@ -72,8 +72,8 @@ class Conversation extends Component {
     this.scrollToBottom()
   }
   componentDidUpdate () {
-    this.scrollToBottom()
     store.set('state', this.state)
+    this.scrollToBottom()
   }
 
   createWalletInit () {
@@ -258,8 +258,6 @@ class Conversation extends Component {
       loadingBot: true,
       questionNumber: this.state.questionNumber + 1
     }, () => {
-      console.log('--  nextQuestion')
-      console.log(this.state)
       if (this.state.questions[this.state.questionNumber].flash === true) {
         this.setState({
           messages: [
@@ -326,7 +324,7 @@ class Conversation extends Component {
     }
   }
 
-  onDropFiles (files) {
+  handleFiles (files) {
     console.log(files)
   }
 
@@ -386,7 +384,7 @@ class Conversation extends Component {
                 onButtonSelect={this.handleButtonSelect}
                 onIconClick={this.handleIconClick}
                 onListClick={this.onListSelect}
-                onDrop={this.onDropFiles}
+                onFilesUpload={this.handleFiles}
                 active={messages.length === index + 1}
             />
           )}
