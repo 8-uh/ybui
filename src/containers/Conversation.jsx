@@ -326,6 +326,10 @@ class Conversation extends Component {
     }
   }
 
+  onDropFiles (files) {
+    console.log(files)
+  }
+
   initialHandler (action) {
     const questions = require('../questions/initial.json')
     if (action === 'button') {
@@ -382,6 +386,7 @@ class Conversation extends Component {
                 onButtonSelect={this.handleButtonSelect}
                 onIconClick={this.handleIconClick}
                 onListClick={this.onListSelect}
+                onDrop={this.onDropFiles}
                 active={messages.length === index + 1}
             />
           )}
