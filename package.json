@@ -23,6 +23,7 @@
     "react-dropzone-component": "^1.4.1",
     "store": "^2.0.4",
     "styled-components": "^1.4.3",
+    "truffle-default-builder": "^2.0.0",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
     "web3": "^0.18.2"
   },
