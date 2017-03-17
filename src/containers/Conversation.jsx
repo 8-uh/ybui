@@ -331,26 +331,6 @@ class Conversation extends Component {
   handleFiles (files) {
     this.scrollToBottom()
     console.log(files)
-    // var mockFile = {
-    //   name: files.name,
-    //   size: files.size,
-    //   type: 'image/jpeg'
-    // }
-    // console.log(mockFile)
-    // const fileStream = [
-    //   {
-    //     path: files.name,
-    //     content: mockFile
-    //   }
-    // ]
-    //
-
-    // ipfs.util.addFromStream(, (err, result) => {
-    //   if (err) {
-    //     console.log(err)
-    //   }
-    //   console.log(result)
-    // })
   }
 
   initialHandler (action) {
