@@ -7,31 +7,31 @@
     "key": "choice",
     "icons": [
       {
-        "text": "Photo",
+        "text": "photo",
         "icon": "camera_alt"
       },
       {
-        "text": "Message",
+        "text": "message",
         "icon": "chat_bubble_outline"
       },
       {
-        "text": "Contact",
+        "text": "contact",
         "icon": "person_outline"
       },
       {
-        "text": "Favorite",
+        "text": "favorite",
         "icon": "favorite_border"
       },
       {
-        "text": "Location",
+        "text": "location",
         "icon": "place"
       },
       {
-        "text": "Call",
+        "text": "call",
         "icon": "call"
       },
       {
-        "text": "More",
+        "text": "more",
         "icon": "more"
       }
     ],
@@ -67,66 +67,66 @@
     ]
   },
   {
-    "text": "Give me the photo",
+    "text": "give me the photo",
     "key": "pickphoto",
     "buttons": [
       {
-        "text": "Camera",
+        "text": "camera",
         "value": "camera"
       },
       {
-        "text": "Browse",
+        "text": "browse",
         "value": "browse"
       },
       {
-        "text": "Link",
+        "text": "link",
         "value": "link"
       }
     ]
   },
   {
-    "text": "What would you like to do with this image?",
-    "key": "imageLike",
+    "text": "what would you like to do with this image?",
+    "key": "imagelike",
     "image": "https://placeimg.com/640/480/any",
     "buttons": [
       {
-        "text": "Sell?",
+        "text": "sell?",
         "value": "sell"
       },
       {
-        "text": "More Pics",
+        "text": "more pics",
         "value": "more"
       }
     ]
   }, {
-    "text": "Lets add up more infomation!",
+    "text": "lets add up more infomation!",
     "flash": true
     },{
-    "text": "What do you want to do now? Please select.",
+    "text": "what do you want to do now? please select.",
     "key": "salechoice",
     "icons": [
       {
-        "text": "Photo",
+        "text": "photo",
         "icon": "linked_camera"
       },
       {
-        "text": "Message",
+        "text": "message",
         "icon": "message"
       },
       {
-        "text": "Contact",
+        "text": "contact",
         "icon": "contact_phone"
       },
       {
-        "text": "Favorite",
+        "text": "favorite",
         "icon": "favorite"
       },
       {
-        "text": "Call",
+        "text": "call",
         "icon": "call"
       },
       {
-        "text": "More",
+        "text": "more",
         "icon": "more_vert"
       }
     ]

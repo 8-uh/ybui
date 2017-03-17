@@ -3,12 +3,12 @@
     "text": ""
   },
   {
-    "text": "Choose the file",
-    "key": "theFile",
+    "text": "choose the file",
+    "key": "thefile",
     "upfile": true
   },
   {
-    "text": "Flash the file",
+    "text": "flash the file",
     "flash": true
   }
 ]

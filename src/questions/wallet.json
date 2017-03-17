@@ -3,11 +3,11 @@
     "text": ""
   },
   {
-    "text": "Wallet",
+    "text": "wallet",
     "flash": true
   },
   {
-    "text": "What do you want to do?",
+    "text": "what do you want to do?",
     "key": "what",
     "lists": [
       {
@@ -15,7 +15,7 @@
         "value": "wallet_create_new"
       },
       {
-        "text": "List wallet",
+        "text": "list wallet",
         "value": "wallet_list"
       },
       {

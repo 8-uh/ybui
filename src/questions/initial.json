@@ -2,34 +2,34 @@
   {
     "text": "",
     "key": "choice",
-    "sender": "BOT",
+    "sender": "bot",
     "icons": [
       {
-        "text": "Photo",
+        "text": "photo",
         "icon": "camera_alt"
       },
       {
-        "text": "Message",
+        "text": "message",
         "icon": "chat_bubble_outline"
       },
       {
-        "text": "Contact",
+        "text": "contact",
         "icon": "person_outline"
       },
       {
-        "text": "Favorite",
+        "text": "favorite",
         "icon": "favorite_border"
       },
       {
-        "text": "Location",
+        "text": "location",
         "icon": "place"
       },
       {
-        "text": "Call",
+        "text": "call",
         "icon": "call"
       },
       {
-        "text": "More",
+        "text": "more",
         "icon": "more"
       }
     ],
@@ -85,16 +85,16 @@
     ]
   },
   {
-    "text": "What do you want to do?",
+    "text": "what do you want to do?",
     "key": "findsend",
-    "sender": "BOT",
+    "sender": "bot",
     "buttons": [
       {
-        "text": "Find",
+        "text": "find",
         "value": "find"
       },
       {
-        "text": "Send",
+        "text": "send",
         "value": "send"
       }
     ]

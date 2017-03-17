@@ -3,25 +3,25 @@
     "text": ""
   },
   {
-    "text": "Give me the photo",
+    "text": "give me the photo",
     "key": "pickphoto",
     "buttons": [
       {
-        "text": "Camera",
+        "text": "camera",
         "value": "camera"
       },
       {
-        "text": "Browse",
+        "text": "browse",
         "value": "browse"
       },
       {
-        "text": "Link",
+        "text": "link",
         "value": "link"
       }
     ]
   },
   {
-    "text": "Lets add up more infomation!",
+    "text": "lets add up more information!",
     "flash": true
   }
 ]
