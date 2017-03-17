@@ -7,8 +7,8 @@ const server = new Hapi.Server()
 var ipfsAPI = require('ipfs-api')
 
 var ipfs = ipfsAPI({
-  host: '192.168.27.101',
-  port: '5001',
+  host: 'ipfs.lightrains.com',
+  port: '80',
   protocol: 'http'
 })
 

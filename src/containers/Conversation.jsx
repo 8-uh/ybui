@@ -14,16 +14,13 @@ import Message from '../components/Message'
 import MessageArea from '../primitives/MessageArea'
 import Loading from '../components/Loading'
 import SubmitButton from '../primitives/SubmitButton'
-// import update from 'react-addons-update'
+import update from 'immutability-helper'
 
 var lightwallet = require('eth-lightwallet')
 var store = require('store')
-var ipfsAPI = require('ipfs-api')
 
 var daContract = '0x6c63857ee0a9d93db8927a3b4af9a7ff20da0a9c'
 var daContractABI = [{'constant': false, 'inputs': [{'name': 'hash', 'type': 'bytes'}], 'name': 'getAssetByHash', 'outputs': [{'name': '_created', 'type': 'uint256'}, {'name': '_active', 'type': 'bool'}, {'name': '_hashValue', 'type': 'bytes'}, {'name': '_owner', 'type': 'address'}], 'payable': false, 'type': 'function'}, {'constant': true, 'inputs': [{'name': '', 'type': 'uint256'}], 'name': 'Assets', 'outputs': [{'name': 'created', 'type': 'uint256'}, {'name': 'active', 'type': 'bool'}, {'name': 'hashValue', 'type': 'bytes'}, {'name': 'owner', 'type': 'address'}], 'payable': false, 'type': 'function'}, {'constant': false, 'inputs': [], 'name': 'getMyAssetsIndex', 'outputs': [{'name': 'index', 'type': 'uint256[]'}], 'payable': false, 'type': 'function'}, {'constant': false, 'inputs': [{'name': '_created', 'type': 'uint256'}, {'name': '_active', 'type': 'bool'}, {'name': '_hashValue', 'type': 'bytes'}], 'name': 'addAsset', 'outputs': [], 'payable': false, 'type': 'function'}, {'constant': false, 'inputs': [{'name': 'index', 'type': 'uint256'}, {'name': '_senderAddress', 'type': 'address'}], 'name': 'getAssetsByIndex', 'outputs': [{'name': '_created', 'type': 'uint256'}, {'name': '_active', 'type': 'bool'}, {'name': '_hashValue', 'type': 'bytes'}, {'name': '_owner', 'type': 'address'}], 'payable': false, 'type': 'function'}]
-
-var ipfs = ipfsAPI({host: 'ipfs.lightrains.com', port: '5001', protocol: 'http'})
 
 import crypto from 'crypto'
 const sourceCreateHash = crypto.createHash
@@ -35,7 +32,7 @@ crypto.createHash = function createHash (alg) {
 }
 var Web3 = require('web3')
 var web3 = new Web3()
-web3.setProvider(new web3.providers.HttpProvider('http://192.168.27.101:8545'))
+web3.setProvider(new web3.providers.HttpProvider('http://eth.lightrains.com'))
 
 class Conversation extends Component {
   constructor (props) {
@@ -342,10 +339,12 @@ class Conversation extends Component {
     var myContractInstance = MyContract.at(daContract)
     console.log(myContractInstance)
     var result = myContractInstance.addAsset(123, 1, res.hash, {from: web3.eth.coinbase})
+    console.log(this.state.messages)
+    console.log((this.state.messages.length - 1))
 
-    this.setState({
-      data: update(this.state.messages, {$splice: [[(this.state.messages.length - 1), 1]]})
-    })
+    this.setState((prevState) => ({
+      data: update(prevState.messages, {$splice: [[(this.state.messages.length - 1), 1]]})
+    }))
   }
 
   initialHandler (action) {
