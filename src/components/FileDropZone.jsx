@@ -16,7 +16,7 @@ const FileDropZone = (props) => {
 
 
   const eventHandlers = {
-      addedfile: props.onfileUpload.bind(this)
+      complete: props.onfileUpload.bind(this)
   }
 
   return (
