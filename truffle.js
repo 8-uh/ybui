@@ -2,8 +2,8 @@ var DefaultBuilder = require('truffle-default-builder')
 
 module.exports = {
   build: new DefaultBuilder({
-    'src/contracts.js': [
-      'javascripts/app.js'
+    './src/contracts.js': [
+      './src/smartcontracts/contracts.js'
     ]
   }),
   networks: {
