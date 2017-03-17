@@ -330,7 +330,9 @@ class Conversation extends Component {
 
   handleFiles (files) {
     this.scrollToBottom()
-    console.log(files)
+    var res = JSON.parse(files.xhr.response);
+
+    console.log(res.hash)
   }
 
   initialHandler (action) {
