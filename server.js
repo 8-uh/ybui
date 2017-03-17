@@ -35,33 +35,15 @@ server.route({
   path: '/asset/upload',
   config: {
     payload: {
-      output: 'stream',
-      parse: true,
-      allow: 'multipart/form-data'
+      output: 'file',
+      parse: false,
+      allow: 'multipart/form-data',
+      uploads: '~/hapi-test-uploads'
     },
-    handler: function (request, reply) {
-      var data = request.payload
-      if (data.file) {
-        var name = data.file.hapi.filename
-        var path = process.cwd() + '/uploads/' + Date.now() + name
-        var file = fs.createWriteStream(path)
-        file.on('error', function (err) {
-          console.error(err)
-        })
-        data.file.pipe(file)
-        data.file.on('end', function (err) {
-          if (err) {
-            throw err
-          }
-          ipfs.util.addFromFs(path, { recursive: false}, (err, result) => {
-            if (err) {
-              throw err
-            }
-            reply(result[0])
-          })
-        })
-      }
-    }
+    maxBytes: 10240, // 10meg upload limit
+    timeout: 30000, // 30 second timeout
+    /** It doesn't appear that you need a handler for this, unless you have some other side
+    effect that you need to handle
   }
 })
 
