@@ -21,6 +21,7 @@
     "hapi": "^16.1.0",
     "ipfs-api": "^12.1.7",
     "react": "^15.4.2",
+    "react-addons-update": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-dropzone-component": "^1.4.1",
     "store": "^2.0.4",

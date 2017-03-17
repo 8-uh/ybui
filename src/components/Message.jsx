@@ -12,7 +12,6 @@ import FileDropZone from './FileDropZone'
 
 const Message = (props) => {
   const { message, active } = props
-
   return (
     <section className={message.flash ? 'flash-message' : ''}>
       {message.sender === 'BOT' ?

@@ -18,16 +18,6 @@ injectGlobal`
       margin-top: 20px;
       font-weight: 200;
     }
-
-    html {
-      overflow: scroll;
-      overflow-x: hidden;
-    }
-    ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
-    }
-
     .draggable {
       -webkit-app-region: drag;
       overflow-x: hidden;
