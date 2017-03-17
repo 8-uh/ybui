@@ -57,7 +57,7 @@ server.route({
             if (err) {
               throw err
             }
-            reply(JSON.stringify(result))
+            reply(result[0])
           })
         })
       }
