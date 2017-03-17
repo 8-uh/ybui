@@ -39,6 +39,7 @@ injectGlobal`
       background: #FFF;
       left: 0;
       border-top: 1px solid ${theme.whiteLine};
+      z-index: 10;
     }
     ul.answerli {
       padding-left: 10px;
