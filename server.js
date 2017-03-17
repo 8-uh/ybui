@@ -1,11 +1,25 @@
 'use strict'
 
 const Hapi = require('hapi')
-
+const fs = require('fs')
 const server = new Hapi.Server()
+
+var ipfsAPI = require('ipfs-api')
+
+var ipfs = ipfsAPI({
+  host: '192.168.27.101',
+  port: '5001',
+  protocol: 'http'
+})
+
 server.connection({
   host: 'localhost',
-  port: 8000
+  port: 8000,
+  routes: {
+    cors: {
+      origin: ['*']
+    }
+  }
 })
 
 server.route({
@@ -26,11 +40,10 @@ server.route({
       allow: 'multipart/form-data'
     },
     handler: function (request, reply) {
-      console.log('here')
       var data = request.payload
       if (data.file) {
         var name = data.file.hapi.filename
-        var path = process.cwd() + '/uploads/' + name
+        var path = process.cwd() + '/uploads/' + Date.now() + name
         var file = fs.createWriteStream(path)
         file.on('error', function (err) {
           console.error(err)
@@ -40,11 +53,12 @@ server.route({
           if (err) {
             throw err
           }
-          var ret = {
-            filename: data.file.hapi.filename,
-            headers: data.file.hapi.headers
-          }
-          reply(JSON.stringify(ret))
+          ipfs.util.addFromFs(path, { recursive: false}, (err, result) => {
+            if (err) {
+              throw err
+            }
+            reply(JSON.stringify(result))
+          })
         })
       }
     }

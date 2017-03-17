@@ -1,6 +1,8 @@
 {
   "include": [
-    "./src"
+    "./src",
+    "ipfshelper.js",
+    "server.js"
   ],
   "compilerOptions": {
     "target": "es6",
